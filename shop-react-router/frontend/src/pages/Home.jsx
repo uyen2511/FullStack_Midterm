@@ -18,42 +18,42 @@ export default function Home() {
 
       <div className="product-grid" style={{ marginTop: '3rem' }}>
         <div className="card">
-          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🛣️</div>
+          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}></div>
           <h3>SPA Routing</h3>
           <p style={{ fontSize: '0.9rem', color: '#666' }}>
             Seamless page transitions using <code>&lt;Routes&gt;</code> and <code>&lt;NavLink&gt;</code>.
           </p>
         </div>
         <div className="card">
-          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🆔</div>
+          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}></div>
           <h3>Dynamic Params</h3>
           <p style={{ fontSize: '0.9rem', color: '#666' }}>
             Fetching specific data using <code>useParams()</code> for product details.
           </p>
         </div>
         <div className="card">
-          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🔍</div>
+          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}></div>
           <h3>Query Strings</h3>
           <p style={{ fontSize: '0.9rem', color: '#666' }}>
             Persistent state management in URLs using <code>useSearchParams()</code>.
           </p>
         </div>
         <div className="card">
-          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>📦</div>
+          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}></div>
           <h3>Nested Routes</h3>
           <p style={{ fontSize: '0.9rem', color: '#666' }}>
             Modular layout systems using <code>&lt;Outlet /&gt;</code> for Admin/User areas.
           </p>
         </div>
         <div className="card">
-          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🛡️</div>
+          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}></div>
           <h3>Route Guards</h3>
           <p style={{ fontSize: '0.9rem', color: '#666' }}>
             Protected access and programmatic redirects for authorized users.
           </p>
         </div>
         <div className="card">
-          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>⏳</div>
+          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}></div>
           <h3>Browser History</h3>
           <p style={{ fontSize: '0.9rem', color: '#666' }}>
             Managing navigation stack with <code>push</code>, <code>replace</code>, and <code>history.back</code>.

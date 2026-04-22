@@ -14,22 +14,50 @@ export default function AdminProducts() {
   }, []);
 
   return (
-    <div className="card">
-      <h2>Manage Products</h2>
-      <button onClick={() => navigate('/admin')}>← Back to Dashboard</button>
-      <table border="1" cellPadding="8" style={{ marginTop: '1rem', width: '100%' }}>
-        <thead>
-          <tr><th>ID</th><th>Name</th><th>Price</th><th>Category</th></tr>
-        </thead>
-        <tbody>
-          {products.map(p => (
-            <tr key={p.id}>
-              <td>{p.id}</td><td>{p.name}</td><td>${p.price}</td><td>{p.category}</td>
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+        <h2>Product Inventory</h2>
+        <button className="secondary" onClick={() => navigate('/admin')}>
+          ← Back to Dashboard
+        </button>
+      </div>
+
+      <div style={{ overflowX: 'auto' }}>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <p><em>Demo: full CRUD có thể mở rộng</em></p>
+          </thead>
+          <tbody>
+            {products.map(p => (
+              <tr key={p.id}>
+                <td>#{p.id}</td>
+                <td style={{ fontWeight: '500' }}>{p.name}</td>
+                <td style={{ color: 'var(--primary-dark)', fontWeight: '600' }}>${p.price}</td>
+                <td>
+                  <span style={{ background: 'var(--secondary)', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem', textTransform: 'capitalize' }}>
+                    {p.category}
+                  </span>
+                </td>
+                <td>
+                  <button style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }} onClick={() => navigate(`/products/${p.id}`)}>
+                    View
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      
+      <p style={{ marginTop: '1.5rem', color: '#888', fontSize: '0.85rem', fontStyle: 'italic' }}>
+        * Note: This is an Administrative interface with nested routing.
+      </p>
     </div>
   );
 }

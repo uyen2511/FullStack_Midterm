@@ -1,12 +1,13 @@
-import { Navigate } from 'react-router-dom';
-
-// Thay đổi thành false để kiểm tra redirect
-const isAdmin = true;
+import { Navigate, useLocation } from 'react-router-dom';
 
 export default function ProtectedRoute({ children }) {
-  if (!isAdmin) {
-    // Dùng replace để không lưu vào history stack
-    return <Navigate to="/" replace />;
+  const isAuth = localStorage.getItem('isAuthenticated') === 'true';
+  const location = useLocation();
+
+  if (!isAuth) {
+    // Requirements: Redirect (Navigate) + State (preserving location) + Replace history
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
+  
   return children;
 }

@@ -1,46 +1,194 @@
-body {
-  font-family: system-ui, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #a8dadc;      /* Pastel Blue */
+  --primary-dark: #457b9d; /* Stronger Blue */
+  --secondary: #f1faee;   /* Off White / Mint */
+  --accent: #e63946;       /* Soft Red for alerts */
+  --background: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #1d3557;
+  --text-muted: #457b9d;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  background: #f5f5f5;
+  padding: 0;
 }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--background);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Navigation */
 nav {
-  background: #1e1e2f;
-  padding: 1rem;
-}
-nav a {
-  color: white;
-  margin-right: 1rem;
-  text-decoration: none;
-}
-nav a.active {
-  font-weight: bold;
-  text-decoration: underline;
-}
-.container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-.card {
   background: white;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
+
+nav a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+nav a:hover {
+  background: var(--secondary);
+  color: var(--primary-dark);
+}
+
+nav a.active {
+  background: var(--primary);
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Layout */
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(168, 218, 220, 0.2);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+/* Grid for Products */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Typography */
+h1, h2, h3 {
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
 button {
-  background: #007bff;
+  background: var(--primary-dark);
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
   cursor: pointer;
-  margin-right: 0.5rem;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
 button:hover {
-  background: #0056b3;
+  background: var(--text-main);
+  transform: scale(1.02);
 }
+
+button.secondary {
+  background: var(--primary);
+  color: var(--text-main);
+}
+
+button.secondary:hover {
+  background: #90c6c8;
+}
+
+/* Form Elements */
 select, input {
-  padding: 0.3rem;
-  margin-right: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  font-family: inherit;
+  color: var(--text-main);
+  background: white;
+  outline: none;
+  transition: var(--transition);
+}
+
+select:focus, input:focus {
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 0 3px rgba(168, 218, 220, 0.3);
+}
+
+/* Admin Specific */
+.admin-sidebar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: var(--secondary);
+  padding: 0.5rem;
+  border-radius: var(--radius);
+}
+
+.admin-sidebar a {
+  flex: 1;
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: calc(var(--radius) - 4px);
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--secondary);
+}
+
+th {
+  background: var(--secondary);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  nav {
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  nav a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .container {
+    margin: 1rem auto;
+  }
 }

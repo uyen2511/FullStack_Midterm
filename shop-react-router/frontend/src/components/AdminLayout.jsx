@@ -1,4 +1,5 @@
 import { Outlet, NavLink } from 'react-router-dom';
+import { LayoutDashboard, Package, ArrowLeft } from 'lucide-react';
 
 export default function AdminLayout() {
   return (
@@ -9,8 +10,12 @@ export default function AdminLayout() {
       </div>
       
       <div className="admin-sidebar">
-        <NavLink to="/admin" end>Dashboard Overview</NavLink>
-        <NavLink to="/admin/products">Inventory Management</NavLink>
+        <NavLink to="/admin" end style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+          <LayoutDashboard size={18} /> Dashboard Overview
+        </NavLink>
+        <NavLink to="/admin/products" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+          <Package size={18} /> Inventory Management
+        </NavLink>
       </div>
       
       <div className="card" style={{ padding: '2rem' }}>
@@ -18,8 +23,10 @@ export default function AdminLayout() {
       </div>
 
       <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-        <NavLink to="/" style={{ color: 'var(--primary-dark)', fontSize: '0.9rem' }}>Return to Customer View</NavLink>
+        <NavLink to="/" style={{ color: 'var(--primary)', fontSize: '0.9rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+          <ArrowLeft size={16} /> Return to Customer View
+        </NavLink>
       </div>
     </div>
   );
-}
+}

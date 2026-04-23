@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { ArrowLeft, Home, Package } from 'lucide-react';
 
 const API_BASE = 'http://localhost:5000/api';
 
 export default function ProductDetail() {
-  // Reading :id from URL (Requirement: Route Parameters)
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
@@ -32,29 +32,27 @@ export default function ProductDetail() {
   return (
     <div style={{ maxWidth: '600px', margin: '2rem auto' }}>
       <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
-        <div style={{ background: 'var(--secondary)', width: '100px', height: '100px', borderRadius: '50%', margin: '0 auto 2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>
-          🏷️
+        <div style={{ background: 'var(--secondary)', width: '100px', height: '100px', borderRadius: '50%', margin: '0 auto 2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', color: 'var(--primary)' }}>
+          <Package size={48} />
         </div>
         <h1>{product.name}</h1>
-        <p style={{ color: 'var(--primary-dark)', fontSize: '2rem', fontWeight: 'bold', margin: '1rem 0' }}>
+        <p style={{ color: 'var(--primary)', fontSize: '2.5rem', fontWeight: 'bold', margin: '1rem 0' }}>
           ${product.price}
         </p>
-        <p style={{ color: '#666', textTransform: 'capitalize', marginBottom: '2rem' }}>
+        <p style={{ color: 'var(--text-muted)', textTransform: 'capitalize', marginBottom: '2rem' }}>
           Category: {product.category}
         </p>
         
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-          {/* Programmatic Navigation: Using navigate(-1) for Go Back */}
           <button className="secondary" onClick={() => navigate(-1)}>
-            ← Go Back
+            <ArrowLeft size={18} /> Go Back
           </button>
           
-          {/* Programmatic Navigation: Using navigate(path) */}
           <button onClick={() => navigate('/products')}>
-            All Products
+            <Home size={18} /> All Products
           </button>
         </div>
       </div>
     </div>
   );
-}
+}

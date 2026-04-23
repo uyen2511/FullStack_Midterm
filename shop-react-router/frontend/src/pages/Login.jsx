@@ -1,21 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { LogIn, User, Lock, AlertCircle } from 'lucide-react';
 
 export default function Login() {
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
+  const isAuth = localStorage.getItem('isAuthenticated') === 'true';
 
-  // If user was redirected here from a protected route, save that location
+  // Practical Scenario: If already logged in, don't show login page
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/admin', { replace: true });
+    }
+  }, [isAuth, navigate]);
+
   const from = location.state?.from?.pathname || "/admin";
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (username.trim()) {
-      // Save "auth" state in localStorage for demo purposes
       localStorage.setItem('isAuthenticated', 'true');
-      
-      // Programmatic Navigation: Redirect with 'replace' so user can't go back to login
+      // Practical Scenario: Redirect to intended page with 'replace'
       navigate(from, { replace: true });
     }
   };
@@ -23,36 +29,52 @@ export default function Login() {
   return (
     <div style={{ maxWidth: '400px', margin: '4rem auto' }}>
       <div className="card" style={{ padding: '3rem' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>Admin Login</h2>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <div style={{ background: 'rgba(99, 102, 241, 0.1)', width: '64px', height: '64px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem', color: 'var(--primary)' }}>
+            <LogIn size={32} />
+          </div>
+          <h2>Admin Access</h2>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Please sign in to continue</p>
+        </div>
+
         <form onSubmit={handleLogin}>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Username</label>
-            <input 
-              type="text" 
-              placeholder="Enter any name..." 
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              style={{ width: '100%' }}
-              required
-            />
+          <div style={{ marginBottom: '1.2rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', fontSize: '0.9rem' }}>Username</label>
+            <div style={{ position: 'relative' }}>
+              <input 
+                type="text" 
+                placeholder="Your name" 
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                style={{ width: '100%', paddingLeft: '2.5rem' }}
+                required
+              />
+              <User size={18} style={{ position: 'absolute', left: '0.8rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+            </div>
           </div>
           <div style={{ marginBottom: '2rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Password</label>
-            <input 
-              type="password" 
-              placeholder="••••••••" 
-              style={{ width: '100%' }}
-              required
-            />
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', fontSize: '0.9rem' }}>Password</label>
+            <div style={{ position: 'relative' }}>
+              <input 
+                type="password" 
+                placeholder="••••••••" 
+                style={{ width: '100%', paddingLeft: '2.5rem' }}
+                required
+              />
+              <Lock size={18} style={{ position: 'absolute', left: '0.8rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+            </div>
           </div>
           <button type="submit" style={{ width: '100%', justifyContent: 'center' }}>
-            Login to Admin
+            Sign In
           </button>
         </form>
-        <p style={{ marginTop: '1rem', textAlign: 'center', fontSize: '0.8rem', color: '#888' }}>
-          * Demo login: No real password required.
-        </p>
+        
+        <div style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'center', color: '#888', fontSize: '0.8rem' }}>
+          <AlertCircle size={14} />
+          <span>Demo mode: No real credentials needed.</span>
+        </div>
       </div>
     </div>
   );
 }
+
